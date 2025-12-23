@@ -1,0 +1,23 @@
+local executorName = identifyexecutor()
+local executorLower = string.lower(executorName)
+
+local blockedExecutors = {
+    "solara",
+}
+
+for _, blockedExe in pairs(blockedExecutors) do
+    if string.find(executorLower, string.lower(blockedExe)) then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "⚠️ Executor Not Supported";
+            Text = executorName .. " is not supported\nPlease use another executor";
+            Duration = 5;
+        })
+        error("Executor not supported: " .. executorName)
+    end
+end
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "✅ Loading Script";
+    Text = "Loading with " .. executorName;
+    Duration = 3;
+})
